@@ -43,7 +43,7 @@
     </resultMap>
 
     <select id="getUserById" resultType="com.blog4java.mybatis.example.entity.User">
-        select * from user where id = #{userId}
+        select * from user where id = #{userId} and name = #{abc}
     </select>
 
     <select id="getUserByIdFull" resultMap="detailMap">

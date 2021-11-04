@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface UserMapper {
 
-    User getUserById(@Param("userId") Long userId);
+    User getUserById(Long userId,String abc);
 
-    User getUserByIdFull(@Param("userId") Long userId);
+    User getUserByIdFull(Long userId);
 
     User getUserByIdForUserDetailMap(@Param("userId") Long userId);
 

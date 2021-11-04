@@ -5,6 +5,7 @@ import com.blog4java.mybatis.example.entity.Order;
 import com.blog4java.mybatis.example.entity.User;
 import com.blog4java.mybatis.example.mapper.OrderMapper;
 import com.blog4java.mybatis.example.mapper.UserMapper;
+import org.apache.ibatis.binding.MapperProxy;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.ibatis.session.SqlSession;
@@ -15,6 +16,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Field;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.List;
@@ -43,11 +45,13 @@ public class ComplexQueryExample {
     }
 
     @Test
-    public void testSimpleQuery() {
-        User user = userMapper.getUserById(1L);
-        System.out.println(JSON.toJSONString(user));
-        List<Order> orders = orderMapper.listOrdersByUserId(1L);
-        System.out.println(JSON.toJSONString(orders));
+    public void testSimpleQuery() throws NoSuchFieldException {
+        Field field = MapperProxy.class.getDeclaredField("sqlSession");
+        field.setAccessible(true);
+//        User user = userMapper.getUserById(1L,"aaa");
+//        System.out.println(JSON.toJSONString(user));
+//        List<Order> orders = orderMapper.listOrdersByUserId(1L);
+//        System.out.println(JSON.toJSONString(orders));
     }
     @Test
     public void testGetUserByIdForUserDetailMap() {
