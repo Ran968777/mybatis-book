@@ -13,6 +13,9 @@ public interface UserMapper {
     @Select("select * from user where id=#{userId,jdbcType=INTEGER}")
     UserEntity getUserById(@Param("userId") String userId);
 
+    @Select("select * from user where id=#{userId,jdbcType=INTEGER} and name = #{name}")
+    UserEntity getUserByIdAndName(String userId,String name);
+
     List<UserEntity> getUserByEntity( UserEntity user);
 
     UserEntity getUserByPhone(@Param("phone") String phone);
